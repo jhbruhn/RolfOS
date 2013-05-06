@@ -1,15 +1,39 @@
-NASMARGS = -f bin -O0 -I source/
+NASMARGS = -f bin -O0 -I source/ -I source/programs
 COLOR_END = "\\033[0m"
 COLOR_START = "\\033[31m"
 UNAME := $(shell uname)
 
 all: floppy
 	
-compile: clean
-	@echo "$(COLOR_START)>> Compiling binaries...$(COLOR_END)"
-	mkdir -p binaries
-	$(foreach name, $(wildcard source/*.asm),  nasm $(NASMARGS) $(name) -o binaries/$(shell basename $(name) .asm).bin;)
+compilebootloader:
+	@echo "$(COLOR_START)>> Compiling bootloader...$(COLOR_END)"
+	
+	mkdir -p binaries/
+	
+	nasm $(NASMARGS) source/bootload.asm -o binaries/bootload.bin
+	
 	@echo "$(COLOR_START)>> Compiled!$(COLOR_END)"
+	
+compilekernel:
+	@echo "$(COLOR_START)>> Compiling kernel...$(COLOR_END)"
+	
+	mkdir -p binaries/
+	
+	nasm $(NASMARGS) source/kernel.asm -o binaries/kernel.bin
+	
+	@echo "$(COLOR_START)>> Compiled!$(COLOR_END)"
+	
+compileprograms:
+	@echo "$(COLOR_START)>> Compiling programs...$(COLOR_END)"
+	
+	mkdir -p binaries/
+	
+	$(foreach name, $(wildcard source/programs/*.asm),  nasm $(NASMARGS) -p source/programs/rolfos.inc $(name) -o binaries/$(shell basename $(name) .asm).rex;)
+	
+	@echo "$(COLOR_START)>> Compiled!$(COLOR_END)"
+	
+	
+compile: clean compilekernel compilebootloader compileprograms
 	
 clean: 
 	@echo "$(COLOR_START)>> Removing dirs...$(COLOR_END)"
@@ -20,8 +44,8 @@ clean:
 floppy: compile
 	@echo "$(COLOR_START)>> Creating floppy...$(COLOR_END)"
 	mkdir -p disks
-	dd if=/dev/zero of=disks/rolfOS.flp bs=1k count=1440
-	dd conv=notrunc if=binaries/bootload.bin of=disks/rolfOS.flp
+	dd if=/dev/zero of=disks/rolfOS.flp bs=1k count=1440 > /dev/null 2>&1
+	dd conv=notrunc if=binaries/bootload.bin of=disks/rolfOS.flp > /dev/null 2>&1
 	@echo "$(COLOR_START)>> Done!$(COLOR_END)"
 	
 	@echo "$(COLOR_START)>> Copying files to floppy...$(COLOR_END)"
@@ -30,10 +54,10 @@ floppy: compile
 		export MOUNTED_FILE=$$(hdid -nobrowse -nomount disks/rolfOS.dmg); \
 		mkdir loop-tmp; \
 		mount -t msdos $$(echo $$MOUNTED_FILE) loop-tmp; \
-		cp binaries/*.bin loop-tmp/; \
+		cp binaries/* loop-tmp/; \
 		sleep 0.2; \
-		umount loop-tmp; \
-		hdiutil detach $$(echo $$MOUNTED_FILE); \
+		umount loop-tmp; > /dev/null 2>&1 \
+		hdiutil detach $$(echo $$MOUNTED_FILE); > /dev/null 2>&1\
 		rm -rf loop-tmp; \
 		rm disks/rolfOS.flp; \
 		cp disks/rolfOS.dmg disks/rolfOS.flp; \

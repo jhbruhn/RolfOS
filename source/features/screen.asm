@@ -33,6 +33,20 @@ os_screen_clear:
   popa
   ret
   
+os_screen_get_cursor:
+  push cx
+  mov ah, 03h
+  int 10h
+  pop cx
+  ret
+
+os_screen_set_cursor:
+  pusha
+  mov ah, 02h
+  int 10h
+  popa
+  ret
+  
 ; Routine: print string stored in si via BIOS-Interrupts
 ; interrupt: 10h, AH = 0x0e
 os_screen_print_string:
