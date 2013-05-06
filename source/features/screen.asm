@@ -1,23 +1,20 @@
-;Routine: get_ch
-;waits for Key-Input and puts the pressed key into al
-os_get_ch:
-  mov ah, 00
-  int 16h
-  ret
-  
+; Screen-features for the terminal stuff with bios etc. bla
+
 ;Routine: print_char
 ;prints the char stored in al 
-os_print_char:
+os_screen_print_char:
+  pusha
   mov ah, 0x0e
   int 10h
+  popa
   ret
   
 ;Routine: clear whole screen using BIOS
 ;moves cursor to upper left
 ;clear-function: 6 (10h)
 ;move-cursor-function: 2 (10h)
-os_clear_screen:
-  
+os_screen_clear:
+  pusha
   ;clear the screen
   mov	ah, 6
 	mov	al, 0
@@ -33,12 +30,13 @@ os_clear_screen:
   mov	dh, 0
   mov	dl, 0
   int	10h
-  
+  popa
   ret
   
 ; Routine: print string stored in si via BIOS-Interrupts
 ; interrupt: 10h, AH = 0x0e
-os_print_string:
+os_screen_print_string:
+  pusha
 	mov ah, 0x0e
 .repeat:
 	lodsb
@@ -48,4 +46,7 @@ os_print_string:
 	jmp .repeat
 
 .done:
+  popa
 	ret
+  
+  temp db 0
