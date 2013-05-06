@@ -4,8 +4,7 @@ os_cli_main:
   mov si, welcome_message_string
   call os_screen_print_string
 
-  mov si, newline_string
-  call os_screen_print_string
+  call os_screen_print_newline
   
 command_input:
 
@@ -14,8 +13,7 @@ command_input:
   
   call os_input_string
   
-  mov si, newline_string
-  call os_screen_print_string
+  call os_screen_print_newline
   
   jmp handle_command
   
@@ -51,8 +49,8 @@ handle_command:
   mov si, program_not_found_string
   call os_screen_print_string
   
-  mov si, newline_string
-  call os_screen_print_string
+  call os_screen_print_newline
+  
   jmp command_input
  
 ;Routine: os_input_string
@@ -137,9 +135,8 @@ os_input_string:
   popa
   ret
   
-newline_string db 0x0a, 0x0d, 0
 welcome_message_string db "Welcome to RolfOS v",VERSION,". Please enter a command!", 0
-commandline_thing_string db "> ", 0
+commandline_thing_string db ">", 0
 invalid_program_string db "The program is invalid!", 0
 program_not_found_string db "Couldn't find that program!", 0
 loading_string db "Loading program...", 0

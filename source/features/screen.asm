@@ -47,10 +47,14 @@ os_screen_set_cursor:
   popa
   ret
   
+os_screen_print_newline:
+  mov si, newline_string
+  call os_screen_print_string
+  ret
+  
 ; Routine: print string stored in si via BIOS-Interrupts
 ; interrupt: 10h, AH = 0x0e
 os_screen_print_string:
-  pusha
 	mov ah, 0x0e
 .repeat:
 	lodsb
@@ -60,7 +64,8 @@ os_screen_print_string:
 	jmp .repeat
 
 .done:
-  popa
 	ret
   
   temp db 0
+  
+newline_string db 0x0a, 0x0d, 0  

@@ -33,6 +33,9 @@ os_call_vectors:
   jmp os_disk_remove_file
   jmp os_disk_rename_file
   jmp os_disk_get_file_size
+  
+  ;Screen 2
+  jmp os_screen_print_newline
 
 ;Routine: os_main 
 ;The main loop where input is being processed etc.
@@ -54,8 +57,8 @@ os_main:
   
   call os_screen_clear
   
-	cmp dl, 0
-	je no_change
+	;cmp dl, 0
+	;je no_change
 	mov [bootdev], dl		; Save boot device number
 	push es
 	mov ah, 8			; Get drive parameters
@@ -68,9 +71,6 @@ os_main:
 	mov [Sides], dx
 
 no_change:
-	mov ax, 1003h			; Set text output with certain attributes
-	mov bx, 0			; to be bright, and not blinking
-	int 10h
 
   mov si, starting_string
   call os_screen_print_string
