@@ -13,23 +13,23 @@ os_keys_check_pressed:
 	pusha
 
 	mov ax, 0
-	mov ah, 1			; BIOS call to check for key
+	mov ah, 1	
 	int 16h
 
-	jz .nokey			; If no key, skip to end
+	jz .nokey		
 
-	mov ax, 0			; Otherwise get it from buffer
+	mov ax, 0		
 	int 16h
 
-	mov [.tmp_buf], ax		; Store resulting keypress
+	mov [.tmp_buf], ax
 
-	popa				; But restore all other regs
+	popa
 	mov ax, [.tmp_buf]
 	ret
 
 .nokey:
 	popa
-	mov ax, 0			; Zero result if no key pressed
+	mov ax, 0	
 	ret
 
 

@@ -1,4 +1,4 @@
-NASMARGS = -f bin -O0 -I source/ -I source/programs
+NASMARGS = -f bin -O0
 COLOR_END = "\\033[0m"
 COLOR_START = "\\033[31m"
 UNAME := $(shell uname)
@@ -19,7 +19,7 @@ compilekernel:
 	
 	mkdir -p binaries/
 	
-	nasm $(NASMARGS) source/kernel.asm -o binaries/kernel.bin
+	nasm $(NASMARGS) -I source/ source/kernel.asm -o binaries/kernel.bin
 	
 	@echo "$(COLOR_START)>> Compiled!$(COLOR_END)"
 	
@@ -28,7 +28,7 @@ compileprograms:
 	
 	mkdir -p binaries/
 	
-	$(foreach name, $(wildcard source/programs/*.asm),  nasm $(NASMARGS) -p source/programs/rolfos.inc $(name) -o binaries/$(shell basename $(name) .asm).rex;)
+	$(foreach name, $(wildcard source/programs/*.asm),  nasm $(NASMARGS) -I source/programs/ $(name) -o binaries/$(shell basename $(name) .asm).rex;)
 	
 	@echo "$(COLOR_START)>> Compiled!$(COLOR_END)"
 	
@@ -92,5 +92,5 @@ runhdd: floppy
 
 runiso: iso
 	@echo "$(COLOR_START)>> Starting QEMU i386 with iso as cd...$(COLOR_END)"
-	qemu-system-i386 -cdrom rolfOS.iso
+	qemu-system-i386 -cdrom disks/rolfOS.iso
 	@echo "$(COLOR_START)>> QEMU exited!$(COLOR_END)"

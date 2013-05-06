@@ -1,3 +1,7 @@
+BITS 16
+%include "rolfos.inc"
+ORG 32768
+
 mov si, hello_world_string
 call os_screen_print_string
 ret
