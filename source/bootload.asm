@@ -33,10 +33,12 @@ FileSystem		db "FAT12   "	; File system type: don't change!
 ; Initial startingpoint of OS
 bootloader_start:
   mov ax, 0x07C0	
-  add ax, 288
+  add ax, 544
+  cli
   mov ss, ax
   mov sp, 4096
-
+  sti
+  
   mov ax, 07C0h
   mov ds, ax 
   

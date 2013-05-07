@@ -57,8 +57,8 @@ os_main:
   
   call os_screen_clear
   
-	;cmp dl, 0
-	;je no_change
+	cmp dl, 0
+	je no_change
 	mov [bootdev], dl		; Save boot device number
 	push es
 	mov ah, 8			; Get drive parameters
@@ -71,7 +71,6 @@ os_main:
 	mov [Sides], dx
 
 no_change:
-
   mov si, starting_string
   call os_screen_print_string
 

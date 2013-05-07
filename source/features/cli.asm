@@ -20,11 +20,14 @@ command_input:
 ;Routine: handle_command
 ;AX: Location of Command-String
 handle_command:
+;call os_disk_reset_floppy
+
   mov si, ax
   call os_string_parse
   mov si, ax
   mov di, command
   
+start_program:
   call os_string_copy
   call os_string_uppercase
 
@@ -40,7 +43,7 @@ handle_command:
 	mov dx, 0
 	mov si, 0
 	mov di, 0
-
+  
   call APP_LOCATION
   
   jmp command_input

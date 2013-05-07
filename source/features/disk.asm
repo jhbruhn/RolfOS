@@ -613,7 +613,13 @@ os_disk_get_file_size:
 ;Routine: os_get_file_list
 ;puts a comma-separated list of files of the floppy into AX
 os_disk_get_file_list:
-	pusha
+	
+	mov ax, 0			; Clear all registers
+	mov bx, 0
+	mov cx, 0
+	mov dx, 0
+
+  ;pusha
 
 	mov word [.file_list_tmp], ax
 
@@ -630,24 +636,24 @@ os_disk_get_file_list:
 	mov ah, 2			; Params for int 13h: read floppy sectors
 	mov al, 14			; And read 14 of them
 
-	pusha				; Prepare to enter loop
+	;pusha				; Prepare to enter loop
 
 
 .read_root_dir:
-	popa
-	pusha
+	;popa
+	;pusha
 
 	stc
 	int 13h				; Read sectors
-	call os_disk_reset_floppy		; Check we've read them OK
+  call os_disk_reset_floppy
 	jnc .show_dir_init		; No errors, continue
-
+  
 	call os_disk_reset_floppy		; Error = reset controller and try again
-	jnc .read_root_dir
+	;jnc .read_root_dir
 	jmp .done			; Double error, exit 'dir' routine
 
 .show_dir_init:
-	popa
+	;popa
 
 	mov ax, 0
 	mov si, disk_buffer		; Data reader from start of filenames
@@ -734,11 +740,12 @@ os_disk_get_file_list:
 	dec di
 	mov byte [di], 0		; Zero-terminate string (gets rid of final comma)
 
-	popa
+	;popa
 	ret
 
 
 	.file_list_tmp		dw 0
+
   
 ;Routine: os_load_file
 ;Loads a file into da RAM. AX=filename, CX=ramlocation; BX->filesize
