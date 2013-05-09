@@ -173,7 +173,9 @@ os_string_parse:
 
 	pop si
 	ret
-  
+
+;Routine: os_string_tokenize
+;splits SI by AL, DI is next token or 0 if none 
 os_string_tokenize:
 	push si
 

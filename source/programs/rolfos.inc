@@ -1,3 +1,5 @@
+BITS 16
+
 os_main equ 0000h
 
 ;Keys
@@ -34,3 +36,8 @@ os_disk_get_file_size equ 48h
 
 ;Screen 2
 os_screen_print_newline equ 4bh
+
+;String 2
+os_string_copy equ 4eh
+
+ORG 32768

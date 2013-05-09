@@ -36,6 +36,9 @@ os_call_vectors:
   
   ;Screen 2
   jmp os_screen_print_newline
+  
+  ;String 2
+  jmp os_string_copy
 
 ;Routine: os_main 
 ;The main loop where input is being processed etc.

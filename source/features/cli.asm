@@ -11,6 +11,7 @@ command_input:
   mov si, commandline_thing_string
   call os_screen_print_string
   
+  mov ax, input
   call os_input_string
   
   call os_screen_print_newline
@@ -20,17 +21,44 @@ command_input:
 ;Routine: handle_command
 ;AX: Location of Command-String
 handle_command:
-;call os_disk_reset_floppy
+  mov si, input			; Separate out the individual command
+  mov al, ' '
+  call os_string_tokenize
 
-  mov si, ax
-  call os_string_parse
-  mov si, ax
+  mov word [param_list], di	; Store location of full parameters
+
+  mov si, input			; Store copy of command for later modifications
   mov di, command
-  
-start_program:
   call os_string_copy
-  call os_string_uppercase
 
+	mov ax, command
+	call os_string_uppercase
+	call os_string_length
+  
+	mov si, command
+	add si, ax
+
+	sub si, 4
+  
+  mov di, rex_ext
+  call os_string_compare
+  jc start_program
+  
+	mov ax, command
+	call os_string_length
+
+	mov si, command
+	add si, ax
+
+	mov byte [si], '.'
+	mov byte [si+1], 'R'
+	mov byte [si+2], 'E'
+	mov byte [si+3], 'X'
+	mov byte [si+4], 0
+    
+start_program:  
+
+  mov ax, command
   mov bx, 0
   mov cx, APP_LOCATION
   
@@ -40,9 +68,8 @@ start_program:
 	mov ax, 0			; Clear all registers
 	mov bx, 0
 	mov cx, 0
-	mov dx, 0
-	mov si, 0
-	mov di, 0
+	mov word si, [param_list] 
+  mov di, 0
   
   call APP_LOCATION
   
@@ -142,7 +169,7 @@ welcome_message_string db "Welcome to RolfOS v",VERSION,". Please enter a comman
 commandline_thing_string db ">", 0
 invalid_program_string db "The program is invalid!", 0
 program_not_found_string db "Couldn't find that program!", 0
-loading_string db "Loading program...", 0
+rex_ext db ".REX", 0
 
 dirlist	times 1024 db 0
 input			times 256 db 0
