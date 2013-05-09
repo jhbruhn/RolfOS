@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.3.1"/>
-<title>RolfOS: cli-asm.c File Reference</title>
+<title>RolfOS: screen-asm.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -82,7 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('cli-asm_8c.html','');});
+$(document).ready(function(){initNavTree('screen-asm_8c.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -103,43 +103,80 @@ $(document).ready(function(){initNavTree('cli-asm_8c.html','');});
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">cli-asm.c File Reference</div>  </div>
+<div class="title">screen-asm.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>cli.asm  
+<p>screen.asm  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a5adca1a841cabb9024eb8ffca8a7877b"><td class="memItemLeft" align="right" valign="top">AX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cli-asm_8c.html#a5adca1a841cabb9024eb8ffca8a7877b">os_cli_input_string</a> (AX)</td></tr>
-<tr class="separator:a5adca1a841cabb9024eb8ffca8a7877b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2bf7cd76581ac4005158c083733fa0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="screen-asm_8c.html#ad2bf7cd76581ac4005158c083733fa0d">os_screen_clear</a> (void)</td></tr>
+<tr class="separator:ad2bf7cd76581ac4005158c083733fa0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a4db439df8b6e7784ad62a34c741d68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="screen-asm_8c.html#a2a4db439df8b6e7784ad62a34c741d68">os_screen_print_newline</a> (void)</td></tr>
+<tr class="separator:a2a4db439df8b6e7784ad62a34c741d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a74b504e01b324ade9f86d8ae60c440"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="screen-asm_8c.html#a1a74b504e01b324ade9f86d8ae60c440">os_screen_print_string</a> (SI)</td></tr>
+<tr class="separator:a1a74b504e01b324ade9f86d8ae60c440"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>cli.asm </p>
-<p>RolfOS Commandline </p>
+<div class="textblock"><p>screen.asm </p>
+<p>Screen-features for the terminal stuff </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a5adca1a841cabb9024eb8ffca8a7877b"></a>
+<a class="anchor" id="ad2bf7cd76581ac4005158c083733fa0d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">AX os_cli_input_string </td>
+          <td class="memname">void os_screen_clear </td>
           <td>(</td>
-          <td class="paramtype">AX&#160;</td>
+          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Read a String from the console, ends with the press of 'Enter' </p>
+<p>Clears the screen </p>
+
+</div>
+</div>
+<a class="anchor" id="a2a4db439df8b6e7784ad62a34c741d68"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void os_screen_print_newline </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Prints a \n \r </p>
+
+</div>
+</div>
+<a class="anchor" id="a1a74b504e01b324ade9f86d8ae60c440"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void os_screen_print_string </td>
+          <td>(</td>
+          <td class="paramtype">SI&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Prints a string </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">AX</td><td>- location of input-string </td></tr>
+    <tr><td class="paramname">SI</td><td>- the string </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>AX - location of the string the user entered </dd></dl>
 
 </div>
 </div>
@@ -148,8 +185,8 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="cli-asm_8c.html">cli-asm.c</a></li>
-    <li class="footer">Generated on Thu May 9 2013 21:26:54 for RolfOS by
+    <li class="navelem"><a class="el" href="screen-asm_8c.html">screen-asm.c</a></li>
+    <li class="footer">Generated on Thu May 9 2013 21:16:46 for RolfOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

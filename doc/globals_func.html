@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.3.1"/>
-<title>RolfOS: cli-asm.c File Reference</title>
+<title>RolfOS: File Members</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -67,7 +67,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
+      <li class="current"><a href="globals.html"><span>File&#160;Members</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow3" class="tabs2">
+    <ul class="tablist">
+      <li><a href="globals.html"><span>All</span></a></li>
+      <li class="current"><a href="globals_func.html"><span>Functions</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -82,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('cli-asm_8c.html','');});
+$(document).ready(function(){initNavTree('globals_func.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -99,57 +105,90 @@ $(document).ready(function(){initNavTree('cli-asm_8c.html','');});
 </iframe>
 </div>
 
-<div class="header">
-  <div class="summary">
-<a href="#func-members">Functions</a>  </div>
-  <div class="headertitle">
-<div class="title">cli-asm.c File Reference</div>  </div>
-</div><!--header-->
 <div class="contents">
-
-<p>cli.asm  
-<a href="#details">More...</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a5adca1a841cabb9024eb8ffca8a7877b"><td class="memItemLeft" align="right" valign="top">AX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cli-asm_8c.html#a5adca1a841cabb9024eb8ffca8a7877b">os_cli_input_string</a> (AX)</td></tr>
-<tr class="separator:a5adca1a841cabb9024eb8ffca8a7877b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>cli.asm </p>
-<p>RolfOS Commandline </p>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a5adca1a841cabb9024eb8ffca8a7877b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">AX os_cli_input_string </td>
-          <td>(</td>
-          <td class="paramtype">AX&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Read a String from the console, ends with the press of 'Enter' </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">AX</td><td>- location of input-string </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>AX - location of the string the user entered </dd></dl>
-
-</div>
-</div>
+&#160;<ul>
+<li>os_cli_input_string()
+: <a class="el" href="cli-asm_8c.html#a5adca1a841cabb9024eb8ffca8a7877b">cli-asm.c</a>
+</li>
+<li>os_disk_create_file()
+: <a class="el" href="disk-asm_8c.html#a86089c2636e53f422d6e21127b6b7980">disk-asm.c</a>
+</li>
+<li>os_disk_file_exists()
+: <a class="el" href="disk-asm_8c.html#a66c59eb53cd771470c0ff6967c0e81f1">disk-asm.c</a>
+</li>
+<li>os_disk_get_file_list()
+: <a class="el" href="disk-asm_8c.html#ade7d9e313a91a3133efb673e0558fdac">disk-asm.c</a>
+</li>
+<li>os_disk_get_file_size()
+: <a class="el" href="disk-asm_8c.html#ad6d9f297f388f010422347086e83043d">disk-asm.c</a>
+</li>
+<li>os_disk_load_file()
+: <a class="el" href="disk-asm_8c.html#aed9e771e807b68da328e32f53052c63d">disk-asm.c</a>
+</li>
+<li>os_disk_remove_file()
+: <a class="el" href="disk-asm_8c.html#a2938142100a3bc926a347e9af53e01dc">disk-asm.c</a>
+</li>
+<li>os_disk_rename_file()
+: <a class="el" href="disk-asm_8c.html#aa3b791b57975bfc83d69364752919cdd">disk-asm.c</a>
+</li>
+<li>os_disk_reset_floppy()
+: <a class="el" href="disk-asm_8c.html#a8a4e1452cc8d0062db078cde7089902a">disk-asm.c</a>
+</li>
+<li>os_disk_write_file()
+: <a class="el" href="disk-asm_8c.html#a0b1ddc37c4c8e9cf2a0aec4c6bab6f87">disk-asm.c</a>
+</li>
+<li>os_find_char_in_string()
+: <a class="el" href="string-asm_8c.html#a3993cca60e5ee5b976a3b686e6e83bc2">string-asm.c</a>
+</li>
+<li>os_int_to_string()
+: <a class="el" href="string-asm_8c.html#a9eb58d68fee60ad3391e8b51ed72da59">string-asm.c</a>
+</li>
+<li>os_keys_check_pressed()
+: <a class="el" href="keyboard-asm_8c.html#a8c97a171d1f8636f0c4a2e6fab0c56a8">keyboard-asm.c</a>
+</li>
+<li>os_screen_clear()
+: <a class="el" href="screen-asm_8c.html#ad2bf7cd76581ac4005158c083733fa0d">screen-asm.c</a>
+</li>
+<li>os_screen_print_newline()
+: <a class="el" href="screen-asm_8c.html#a2a4db439df8b6e7784ad62a34c741d68">screen-asm.c</a>
+</li>
+<li>os_screen_print_string()
+: <a class="el" href="screen-asm_8c.html#a1a74b504e01b324ade9f86d8ae60c440">screen-asm.c</a>
+</li>
+<li>os_sint_to_string()
+: <a class="el" href="string-asm_8c.html#a3bfe25432bab366d314cb776f86909cd">string-asm.c</a>
+</li>
+<li>os_string_chomp()
+: <a class="el" href="string-asm_8c.html#a9653a9a5c5c05ae823f4e390492e0fea">string-asm.c</a>
+</li>
+<li>os_string_compare()
+: <a class="el" href="string-asm_8c.html#a96bb4f39c3f849bfcf5fe802ba3c2f14">string-asm.c</a>
+</li>
+<li>os_string_join()
+: <a class="el" href="string-asm_8c.html#a0638588d8f2d667a74c20fcdeb90abd1">string-asm.c</a>
+</li>
+<li>os_string_length()
+: <a class="el" href="string-asm_8c.html#aeffaa53db8ae506a3f0c6524398369b8">string-asm.c</a>
+</li>
+<li>os_string_parse()
+: <a class="el" href="string-asm_8c.html#a4c67fa7e126ae3ed5f28349f2af719c9">string-asm.c</a>
+</li>
+<li>os_string_to_int()
+: <a class="el" href="string-asm_8c.html#ae94f1d13f0547963c871c0a3a5cbb6c5">string-asm.c</a>
+</li>
+<li>os_string_tokenize()
+: <a class="el" href="string-asm_8c.html#a6c296727392c613f335dd48f2da0dca1">string-asm.c</a>
+</li>
+<li>os_string_uppercase()
+: <a class="el" href="string-asm_8c.html#a6c8468e5a5c11a39257e4eea83337c3f">string-asm.c</a>
+</li>
+</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="cli-asm_8c.html">cli-asm.c</a></li>
-    <li class="footer">Generated on Thu May 9 2013 21:26:54 for RolfOS by
+    <li class="footer">Generated on Thu May 9 2013 21:16:46 for RolfOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>
