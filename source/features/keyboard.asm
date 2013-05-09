@@ -1,6 +1,11 @@
 ;;
+;General procedures for the keyboard
+;;
+
+;;
 ; waits for Key-Input and puts the pressed key into al
 ; @return AL - the pressed key
+;;
 os_keys_wait_char:
   pusha
   mov ah, 00
@@ -13,6 +18,7 @@ os_keys_wait_char:
 ;;
 ; Checks if key is pressed
 ; @return AX - scancode of pressed key, if none = 0 
+;;
 os_keys_check_pressed:
 	pusha
 

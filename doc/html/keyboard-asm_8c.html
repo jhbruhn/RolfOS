@@ -114,11 +114,12 @@ $(document).ready(function(){initNavTree('keyboard-asm_8c.html','');});
 Functions</h2></td></tr>
 <tr class="memitem:a8c97a171d1f8636f0c4a2e6fab0c56a8"><td class="memItemLeft" align="right" valign="top">AX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="keyboard-asm_8c.html#a8c97a171d1f8636f0c4a2e6fab0c56a8">os_keys_check_pressed</a> (void)</td></tr>
 <tr class="separator:a8c97a171d1f8636f0c4a2e6fab0c56a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a145487d758c19b1c09487c6a4012eb61"><td class="memItemLeft" align="right" valign="top">AL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="keyboard-asm_8c.html#a145487d758c19b1c09487c6a4012eb61">os_keys_wait_char</a> (void)</td></tr>
+<tr class="separator:a145487d758c19b1c09487c6a4012eb61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>keyboard.asm </p>
-<p>waits for Key-Input and puts the pressed key into al </p>
-<dl class="section return"><dt>Returns</dt><dd>AL - the pressed key </dd></dl>
+<p>General procedures for the keyboard </p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a8c97a171d1f8636f0c4a2e6fab0c56a8"></a>
 <div class="memitem">
@@ -138,13 +139,31 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a145487d758c19b1c09487c6a4012eb61"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AL os_keys_wait_char </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>waits for Key-Input and puts the pressed key into al </p>
+<dl class="section return"><dt>Returns</dt><dd>AL - the pressed key </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="keyboard-asm_8c.html">keyboard-asm.c</a></li>
-    <li class="footer">Generated on Thu May 9 2013 21:30:59 for RolfOS by
+    <li class="footer">Generated on Thu May 9 2013 21:39:38 for RolfOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

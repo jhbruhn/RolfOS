@@ -1,4 +1,8 @@
-;;Routine: os_string_copy
+;;
+; String-helpers
+;;
+
+;;
 ; copies a string
 ; @param SI - input
 ; @param DI - target

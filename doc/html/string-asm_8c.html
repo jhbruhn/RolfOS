@@ -122,6 +122,8 @@ Functions</h2></td></tr>
 <tr class="separator:a9653a9a5c5c05ae823f4e390492e0fea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96bb4f39c3f849bfcf5fe802ba3c2f14"><td class="memItemLeft" align="right" valign="top">CARRY&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string-asm_8c.html#a96bb4f39c3f849bfcf5fe802ba3c2f14">os_string_compare</a> (SI, DI)</td></tr>
 <tr class="separator:a96bb4f39c3f849bfcf5fe802ba3c2f14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65b18cbad9de99d36b375f23ca904647"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string-asm_8c.html#a65b18cbad9de99d36b375f23ca904647">os_string_copy</a> (SI, DI)</td></tr>
+<tr class="separator:a65b18cbad9de99d36b375f23ca904647"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0638588d8f2d667a74c20fcdeb90abd1"><td class="memItemLeft" align="right" valign="top">CX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string-asm_8c.html#a0638588d8f2d667a74c20fcdeb90abd1">os_string_join</a> (AX, BX)</td></tr>
 <tr class="separator:a0638588d8f2d667a74c20fcdeb90abd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeffaa53db8ae506a3f0c6524398369b8"><td class="memItemLeft" align="right" valign="top">AX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string-asm_8c.html#aeffaa53db8ae506a3f0c6524398369b8">os_string_length</a> (AX)</td></tr>
@@ -137,14 +139,7 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>string.asm </p>
-<p>Routine: os_string_copy copies a string </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">SI</td><td>- input </td></tr>
-    <tr><td class="paramname">DI</td><td>- target </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>String-helpers </p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a3993cca60e5ee5b976a3b686e6e83bc2"></a>
 <div class="memitem">
@@ -284,6 +279,40 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>CARRY - set if same, clear if different </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a65b18cbad9de99d36b375f23ca904647"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void os_string_copy </td>
+          <td>(</td>
+          <td class="paramtype">SI&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DI&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>copies a string </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">SI</td><td>- input </td></tr>
+    <tr><td class="paramname">DI</td><td>- target </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -459,7 +488,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="string-asm_8c.html">string-asm.c</a></li>
-    <li class="footer">Generated on Thu May 9 2013 21:30:59 for RolfOS by
+    <li class="footer">Generated on Thu May 9 2013 21:39:38 for RolfOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>
