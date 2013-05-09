@@ -9,9 +9,11 @@ doxygen Doxyfile
 
 rm *.c
 
-git checkout gh-pages
-cp -R doc/html/* ./
-git add . -A
+git add ./ -A
 git commit -m "changes to docs"
+
+git checkout gh-pages
+git merge master --strategy=ours --no-commit
+cp -R html/* ./
 git push origin gh-pages
 git checkout master
