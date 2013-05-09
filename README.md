@@ -9,4 +9,4 @@ To write a Program for RolfOS, simple create a .asm file named after your progra
 
 Docs
 ----
-[Here they are!](http://htmlpreview.github.io/?https://raw.github.com/bigteddy97/RolfOS/master/doc/html/index.html)
+[Here they are!](http://bigteddy97.github.io/RolfOS/doc/html)
