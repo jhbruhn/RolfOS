@@ -38,7 +38,6 @@ compile: clean compilekernel compilebootloader compileprograms
 clean: 
 	@echo "$(COLOR_START)>> Removing dirs...$(COLOR_END)"
 	rm -rf binaries/ disks/ iso-tmp/ loop-tmp/
-	rm -f rolfOS.iso
 	@echo "$(COLOR_START)>> Done!$(COLOR_END)"
 
 floppy: compile
@@ -74,7 +73,10 @@ floppy: compile
 
 iso: floppy
 	@echo "$(COLOR_START)>> Converting floppy to iso...$(COLOR_END)"
-	mkisofs -quiet -V 'ROLFOS' -input-charset iso8859-1 -o disks/rolfOS.iso -b rolfOS.flp disks/
+	mkdir -p iso-tmp
+	cp binaries/* iso-tmp/
+	cp disks/* iso-tmp/
+	mkisofs -quiet -V 'ROLFOS' -input-charset iso8859-1 -o disks/rolfOS.iso -b rolfOS.flp iso-tmp/
 	rm -rf iso-tmp
 	@echo "$(COLOR_START)>> Done!$(COLOR_END)"
 	
