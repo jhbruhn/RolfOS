@@ -82,7 +82,7 @@ run: runfloppy
 	
 runfloppy: floppy
 	@echo "$(COLOR_START)>> Starting QEMU i386 with floppyimage as floppy...$(COLOR_END)"
-	qemu-system-i386 -soundhw pcspk -fda disks/rolfOS.flp
+	qemu-system-i386 -soundhw pcspk -fda disks/rolfOS.flp -d in_asm
 	@echo "$(COLOR_START)>> QEMU exited!$(COLOR_END)"
 	
 runhdd: floppy
