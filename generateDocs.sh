@@ -15,5 +15,7 @@ git commit -m "changes to docs"
 git checkout gh-pages
 git merge master --strategy=ours --no-commit
 cp -R html/* ./
+git add ../ -A
+git commit -m "docs again"
 git push origin gh-pages
 git checkout master
