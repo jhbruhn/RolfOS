@@ -5,4 +5,8 @@ Yeah, so, RolfOS is a pretty tiny and basic 16-bit Operating System running on a
 
 Writing Programs
 ----------------
-To write a Program for RolfOS, simple create a .asm file named after your programs name in source/programs. It will automagically get compiled by make when you run make. You neede to include the rolfos.inc file to get access to the system functions. I'll write a documentation about that soon.
+To write a Program for RolfOS, simple create a .asm file named after your programs name in source/programs. It will automagically get compiled by make when you run make. You neede to include the rolfos.inc file to get access to the system functions.
+
+Docs
+----
+[Here they are!](http://htmlpreview.github.io/?https://raw.github.com/bigteddy97/RolfOS/master/doc/html/index.html)
