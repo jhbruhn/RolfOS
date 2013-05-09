@@ -1,7 +1,12 @@
-; Screen-features for the terminal stuff with bios etc. bla
+;; 
+; Screen-features for the terminal stuff
+;;
 
-;Routine: print_char
-;prints the char stored in al 
+;;
+; prints the char stored in al 
+; @param AL - the char that should be printed
+;;
+
 os_screen_print_char:
   pusha
   mov ah, 0x0e
@@ -9,10 +14,9 @@ os_screen_print_char:
   popa
   ret
   
-;Routine: clear whole screen using BIOS
-;moves cursor to upper left
-;clear-function: 6 (10h)
-;move-cursor-function: 2 (10h)
+;;
+; Clears the screen
+;;
 os_screen_clear:
   pusha
   ;clear the screen
@@ -46,14 +50,18 @@ os_screen_set_cursor:
   int 10h
   popa
   ret
-  
+;; 
+; Prints a \\n \\r
+;;  
 os_screen_print_newline:
   mov si, newline_string
   call os_screen_print_string
   ret
   
-; Routine: print string stored in si via BIOS-Interrupts
-; interrupt: 10h, AH = 0x0e
+;;
+; Prints a string
+; @param SI - the string
+;;
 os_screen_print_string:
 	mov ah, 0x0e
 .repeat:

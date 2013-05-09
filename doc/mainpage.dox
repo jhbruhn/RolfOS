@@ -1,0 +1,12 @@
+/**
+\mainpage RolfOS documentation
+
+Hi.
+
+This is the documentation of the RolfOS-SDK.
+
+To create a program, make an .asm file in the source/programs folder and make will automatically compile it if you compile RolfOS.
+A simple Hello World program is included in hw.asm, other programs can be found there, too.
+
+To look at the procedures, navigate with the tree-view on the left. Here in the docs, the files are displayed as .c files because I had to hack around Doxygen a bit, everything is pure Assembler here!
+*/

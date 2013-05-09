@@ -1,5 +1,8 @@
-;Routine: os_string_copy
-;Copy string SI into DI
+;;Routine: os_string_copy
+; copies a string
+; @param SI - input
+; @param DI - target
+;;
 os_string_copy:
 	pusha
 
@@ -15,8 +18,11 @@ os_string_copy:
 	popa
 	ret
   
-; Routine:os_string_length
-; Puts length of String in AX into AX
+;;
+; Gets the length of a string
+; @param AX - in-string
+; @return AX - the length of the string
+;;
 os_string_length:
 	pusha
   mov bx, ax		
@@ -37,8 +43,12 @@ os_string_length:
   
   .tmp_counter	dw 0
  
-;Routine: os_string_join
-;CX = AX + BX 
+;;Routine: os_string_join
+; Joins two strings
+; @param AX - string 1
+; @param BX - string 2
+; @return CX - string 1 + string 2
+;;
 os_string_join:
 	pusha
 
@@ -57,8 +67,11 @@ os_string_join:
 	popa
 	ret
   
-;Routine: os_string_uppercase
-;Makes AX uppercase
+;;
+; Makes a string uppercase
+; @param AX - the input-string
+; @return AX - the uppercased string
+;;
 os_string_uppercase:
 	pusha
 
@@ -86,9 +99,12 @@ os_string_uppercase:
 	popa
 	ret
   
-;Routine: os_string_compare
-;compares SI and DI
-;Carry=1 if same, clear if different
+;;Routine: os_string_compare
+; compares two strings
+; @param SI - string 1
+; @param DI - string 2
+; @return CARRY - set if same, clear if different
+;;
 os_string_compare:
 	pusha
 
@@ -118,9 +134,11 @@ os_string_compare:
 	stc				
 	ret
   
-;Routine: os_string_parse
-;Split SI by " "
-;Output: AX, BX, CX, DX
+;;
+; Split the string by " "
+; @param SI - the input
+; @return AX, BX, CX, DX - the results
+;;
 os_string_parse:
 	push si
 
@@ -174,8 +192,12 @@ os_string_parse:
 	pop si
 	ret
 
-;Routine: os_string_tokenize
-;splits SI by AL, DI is next token or 0 if none 
+;;Routine: os_string_tokenize
+; splits a string with a char
+; @param SI - the input-string
+; @param AL - the input-token
+; @return DI - next token or 0 if none
+;; 
 os_string_tokenize:
 	push si
 
@@ -199,9 +221,11 @@ os_string_tokenize:
 	pop si
 	ret
   
-;Routine: os_string_chomp
-;Trim string
-;In/out: AX
+;;
+;Trim a string
+; @param AX - string
+; @return AX - string
+;;
 os_string_chomp:
 	pusha
 
@@ -254,9 +278,11 @@ os_string_chomp:
 	popa
 	ret
 
-;Routine: os_string_to_int
-;Converts a string to an integer
-;In: SI, Out: AX
+;;
+; Converts a string to an integer
+; @param SI - string
+; @return AX - integer
+;;
 os_string_to_int:
 	pusha
 
@@ -307,9 +333,10 @@ os_string_to_int:
 	.tmp		dw 0
 
 
-;Routine: os_int_to_string
+;;
 ;Converts unsigned int to string
-;In=AX, Out=AX
+; @param AX - Integer
+; @return AX - String
 os_int_to_string:
 	pusha
 
@@ -341,9 +368,11 @@ os_int_to_string:
 
 	.t times 7 db 0
   
-;Routine: os_sint_to_string
-;converts a signed int to string
-;In=AX, Out=AX
+;;Routine: os_sint_to_string
+; converts a signed int to string
+; @param AX - signed int
+; @return AX - string
+;;
 os_sint_to_string:
 	pusha
 
@@ -382,9 +411,11 @@ os_sint_to_string:
 
 	.t times 7 db 0
   
-;Routine: os_find_char_in_string
-;Finds AL ind SI
-;AX = Location. 0=notfound
+;;
+; location of a char in a string
+; @param SI - input-string
+; @param AX - Location. 0 = notfound
+;;
 os_find_char_in_string:
 	pusha
 

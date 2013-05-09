@@ -96,3 +96,6 @@ runiso: iso
 	@echo "$(COLOR_START)>> Starting QEMU i386 with iso as cd...$(COLOR_END)"
 	qemu-system-i386 -cdrom disks/rolfOS.iso
 	@echo "$(COLOR_START)>> QEMU exited!$(COLOR_END)"
+	
+docs:
+	echo $(shell cd doc/tools/; ./generateDocs.sh)

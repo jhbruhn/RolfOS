@@ -1,3 +1,7 @@
+;;
+; RolfOS Commandline
+;;
+
 os_cli_main:
   call os_screen_clear
 
@@ -12,14 +16,13 @@ command_input:
   call os_screen_print_string
   
   mov ax, input
-  call os_input_string
+  call os_cli_input_string
   
   call os_screen_print_newline
   
+  mov ax, input
   jmp handle_command
   
-;Routine: handle_command
-;AX: Location of Command-String
 handle_command:
   mov si, input			; Separate out the individual command
   mov al, ' '
@@ -83,9 +86,12 @@ start_program:
   
   jmp command_input
  
-;Routine: os_input_string
-;Puts location of resulting string into AX 
-os_input_string:
+;;
+; Read a String from the console, ends with the press of 'Enter'
+; @param AX - location of input-string
+; @return AX - location of the string the user entered
+;; 
+os_cli_input_string:
 
   pusha
   

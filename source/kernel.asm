@@ -39,6 +39,9 @@ os_call_vectors:
   
   ;String 2
   jmp os_string_copy
+  
+  ;CLI
+  jmp os_cli_input_string
 
 ;Routine: os_main 
 ;The main loop where input is being processed etc.

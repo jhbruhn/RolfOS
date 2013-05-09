@@ -40,4 +40,7 @@ os_screen_print_newline equ 4bh
 ;String 2
 os_string_copy equ 4eh
 
+;CLI
+os_cli_input_string equ 51h
+
 ORG 32768

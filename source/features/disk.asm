@@ -1,5 +1,12 @@
-;Routine: os_disk_get_file_list
-;puts a comma-separated list of files of the floppy into AX
+;; 
+; Procedures to interact with a FAT12 filesystem
+;;
+
+;;
+; Reads a comma-seperated list of files from the bootdevice
+; @param AX - target string of the list
+; @return AX - the comma-seperated list of files
+;;
 os_disk_get_file_list:
 	pusha
 
@@ -128,8 +135,12 @@ os_disk_get_file_list:
 
 	.file_list_tmp		dw 0
 
-;Routine: os_disk_load_file
-;Loads a file into da RAM. AX=filename, CX=ramlocation; BX->filesize
+;;
+; Loads a file into the RAM.
+; @param AX - the filename,
+; @param CX - the target ramlocation;
+; @return BX - the size of the file
+;;
 os_disk_load_file:
 	call os_string_uppercase
 	call int_filename_convert
@@ -330,9 +341,13 @@ os_disk_load_file:
 	.err_msg_floppy_reset	db 'os_load_file: Floppy failed to reset', 0
 
 
-;Routine: os_write_file
-;in: ax (filename), bx = data location, cx = bytes to write
-;carry clear if ok
+;;
+; Write a file to the bootdevice. creates it if not existing. Fails if exists.
+; @param AX - the filename
+; @param BX - the location of the data to be written
+; @param CX - the amount of bytes to be written
+; @return CARRY - clear if ok
+;;
 os_disk_write_file:
 	pusha
 
@@ -629,8 +644,11 @@ os_disk_write_file:
 
 	.free_clusters	times 128 dw 0
     
-;Routine: os_disk_file_exists
-;In=AX; Out: Carry=0 if found, set if not
+;;
+; Checks if a file exists
+; @param AX - filename
+; @return CARRY - clear if found, set if not 
+;;
 os_disk_file_exists:
 	call os_string_uppercase
 	call int_filename_convert	; Make FAT12-style filename
@@ -658,8 +676,10 @@ os_disk_file_exists:
 	ret
 
   
-;Routine: os_disk_create_file
-;Creates a file with the name in AX
+;;
+; Creates an empty file
+; @param AX - the name of the file to be created
+;;
 os_disk_create_file:
 	clc
 
@@ -739,8 +759,10 @@ os_disk_create_file:
 	stc
 	ret
   
-;Routine: os_remove_file
-;Removes file with name stored in AX
+;;
+; Removes a file from the Bootdevice
+; @param AX - name of the file to be removed
+;;
 os_disk_remove_file:
 	pusha
 	call os_string_uppercase
@@ -841,8 +863,11 @@ os_disk_remove_file:
 
 	.cluster dw 0
 
-;Routine: os_disk_rename_file
-;Renames AX to BX
+;;
+; Renames file a to b
+; @param AX - filename a
+; @param BX - filename b
+;;
 os_disk_rename_file:
 	push bx
 	push ax
@@ -891,8 +916,11 @@ os_disk_rename_file:
 
 
 
-;Routine: os_disk_get_file_size
-;In=AX (filename), Out=BX (filesize)
+;;
+; get's the size of a file 
+; @param AX - the filename
+; @return BX - the filesize
+;;
 os_disk_get_file_size:
 	pusha
 
@@ -932,9 +960,6 @@ os_disk_get_file_size:
 	.tmp	dw 0
 
 
-;Routine: int_filename_convert
-;Converts RALF.BIN to "RALF  BIN"
-;AX = IN, AX = out
 int_filename_convert:
 	pusha
 
@@ -1205,8 +1230,9 @@ disk_write_root_dir:
 	ret
 
   
-;Routine: os_os_disk_reset_floppy 
+;;
 ;...resets the floppy!
+;;
 os_disk_reset_floppy:
 
 	push ax
