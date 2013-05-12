@@ -46,7 +46,7 @@ compileprogramsc:
 		echo "$(COLOR_START_RED)>> Sadly, compiling C-Programs on OS X doesn't work yet...$(COLOR_END)";\
 	else\
 		mkdir -p binaries/ \
-		$(foreach name, $(wildcard source/programs/*.c),gcc $(GCCARGS) $(name) -o binaries/$(shell basename $(name) .c).o;)\
+		$(foreach name, $(wildcard source/programs/*.c), $(CC) $(GCCARGS) $(name) -o binaries/$(shell basename $(name) .c).o;)\
 		$(foreach name, $(wildcard binaries/*.o), objcopy $(OBJCOPYARGS) $(name);)\
 		$(foreach name, $(wildcard binaries/*.o), ld $(LDARGS) $(name) -o binaries/$(shell basename $(name) .o).rex;)\
 		rm binaries/*.o; \
