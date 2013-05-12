@@ -64,7 +64,7 @@ floppy: compile
 	else \
 		mkdir tmp-loop; \
 		sudo mount -o loop -t vfat disks/rolfOS.flp tmp-loop; \
-		cp binaries/*.bin tmp-loop/; \
+		sudo cp binaries/*.* tmp-loop/; \
 		sleep 0.2; \
 		sudo umount tmp-loop; \
 		rm -rf tmp-loop; \
