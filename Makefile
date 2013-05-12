@@ -63,13 +63,13 @@ floppy: compile
 		rm disks/rolfOS.dmg; \
 	else \
 		mkdir tmp-loop; \
-		mount -o loop -t vfat disks/rolfOS.flp tmp-loop; \
-		cp binaries/*.bin loop-tmp/; \
+		sudo mount -o loop -t vfat disks/rolfOS.flp tmp-loop; \
+		sudo cp binaries/*.* tmp-loop/; \
 		sleep 0.2; \
-		umount tmp-loop; \
+		sudo umount tmp-loop; \
 		rm -rf tmp-loop; \
 	fi
-	@echo "$(COLOR_START)>> Done!"
+	@echo "$(COLOR_START)>> Done!$(COLOR_END)"
 
 iso: floppy
 	@echo "$(COLOR_START)>> Converting floppy to iso...$(COLOR_END)"
