@@ -42,7 +42,7 @@ compileprogramsasm:
 compileprogramsc:
 	@echo "$(COLOR_START)>> Compiling C programs...$(COLOR_END)"
 	
-	@if [ $(UNAME) == "Darwin" ]; then \
+	@if [ $(UNAME) = "Darwin" ]; then \
 		echo "$(COLOR_START_RED)>> Sadly, compiling C-Programs on OS X doesn't work yet...$(COLOR_END)";\
 	else\
 		mkdir -p binaries/ \
@@ -68,7 +68,7 @@ floppy: compile
 	@echo "$(COLOR_START)>> Done!$(COLOR_END)"
 	
 	@echo "$(COLOR_START)>> Copying files to floppy...$(COLOR_END)"
-	@if [ "$(UNAME)" == "Darwin" ]; then \
+	@if [ "$(UNAME)" = "Darwin" ]; then \
 		cp disks/rolfOS.flp disks/rolfOS.dmg; \
 		export MOUNTED_FILE=$$(hdid -nobrowse -nomount disks/rolfOS.dmg); \
 		mkdir loop-tmp; \
