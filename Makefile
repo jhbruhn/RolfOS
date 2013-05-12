@@ -11,9 +11,7 @@ all: floppy
 	
 compilebootloader:
 	@echo "$(COLOR_START)>> Compiling bootloader...$(COLOR_END)"
-	
-	mkdir -p binaries/
-	
+		
 	nasm $(NASMARGS) source/bootload.asm -o binaries/bootload.bin
 	
 	@echo "$(COLOR_START)>> Compiled!$(COLOR_END)"
@@ -32,9 +30,7 @@ compileprograms: compileprogramsasm compileprogramsc
 	
 compileprogramsasm:
 	@echo "$(COLOR_START)>> Compiling Assembler programs...$(COLOR_END)"
-	
-	mkdir -p binaries/
-	
+		
 	$(foreach name, $(wildcard source/programs/*.asm),  nasm $(NASMARGS) -I source/programs/ $(name) -o binaries/$(shell basename $(name) .asm).rex;)
 	
 	@echo "$(COLOR_START)>> Compiled!$(COLOR_END)"
@@ -43,9 +39,8 @@ compileprogramsc:
 	@echo "$(COLOR_START)>> Compiling C programs...$(COLOR_END)"
 	
 	@if [ $(UNAME) = "Darwin" ]; then \
-		echo "$(COLOR_START_RED)>> Sadly, compiling C-Programs on OS X doesn't work yet...$(COLOR_END)";\
+		echo "$(COLOR_START_RED)>> Sadly, compiling C-Programs for RolfOS on OS X doesn't work yet...$(COLOR_END)";\
 	else\
-		mkdir -p binaries/ \
 		$(foreach name, $(wildcard source/programs/*.c), $(CC) $(GCCARGS) $(name) -o binaries/$(shell basename $(name) .c).o;)\
 		$(foreach name, $(wildcard binaries/*.o), objcopy $(OBJCOPYARGS) $(name);)\
 		$(foreach name, $(wildcard binaries/*.o), ld $(LDARGS) $(name) -o binaries/$(shell basename $(name) .o).rex;)\
