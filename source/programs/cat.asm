@@ -7,7 +7,15 @@ start:
   mov cx, file_content
   call os_disk_load_file
   mov si, file_content
-  call os_screen_print_string
+  mov cx, bx  ;file size into loop counter
+  ; Have to implement own print_string, as OS function stops by '0' byte, this might cut data
+  mov ah, 0x0E  
+.repeat:
+  lodsb
+  int 10h
+  loop .repeat
+
+
   call os_screen_print_newline
   jmp .exit
 
