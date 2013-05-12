@@ -42,6 +42,9 @@ os_call_vectors:
   
   ;CLI
   jmp os_cli_input_string
+  
+  ;Disk 2
+  jmp os_disk_write_file
 
 ;Routine: os_main 
 ;The main loop where input is being processed etc.

@@ -43,4 +43,7 @@ os_string_copy equ 4eh
 ;CLI
 os_cli_input_string equ 51h
 
+;Disk 2
+os_disk_write_file equ 54h
+
 ORG 32768
