@@ -1,2 +1,3 @@
+before_install: sudo apt-get install nasm
 language: c
 script: "make iso"
