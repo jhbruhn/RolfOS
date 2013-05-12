@@ -42,7 +42,7 @@ compileprogramsasm:
 compileprogramsc:
 	@echo "$(COLOR_START)>> Compiling C programs...$(COLOR_END)"
 	
-	@if [ "Darwin" == "Darwin" ]; then \
+	@if [ $(UNAME) == "Darwin" ]; then \
 		echo "$(COLOR_START_RED)>> Sadly, compiling C-Programs on OS X doesn't work yet...$(COLOR_END)";\
 	else\
 		mkdir -p binaries/ \
@@ -52,10 +52,7 @@ compileprogramsc:
 		rm binaries/*.o; \
 		echo "$(COLOR_START)>> Compiled!$(COLOR_END)";\
 	fi
-		
-	 
-	@echo "$(COLOR_START)>> Compiled!$(COLOR_END)"
-	
+			
 compile: compilekernel compilebootloader compileprograms
 	
 clean: 
