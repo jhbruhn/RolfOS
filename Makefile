@@ -1,6 +1,10 @@
 NASMARGS = -f bin -O0
+GCCARGS = -nostdlib -nostartfiles -nodefaultlibs -mno-red-zone
+OBJCOPYARGS = -O binary --section-alignment 32768
+LDARGS = -T data/app.ld
 COLOR_END = "\\033[0m"
-COLOR_START = "\\033[31m"
+COLOR_START = "\\033[32m"
+COLOR_START_RED = "\\033[31m"
 UNAME := $(shell uname)
 
 all: floppy
@@ -23,17 +27,36 @@ compilekernel:
 	
 	@echo "$(COLOR_START)>> Compiled!$(COLOR_END)"
 	
-compileprograms:
-	@echo "$(COLOR_START)>> Compiling programs...$(COLOR_END)"
+compileprograms: compileprogramsasm compileprogramsc
+	
+	
+compileprogramsasm:
+	@echo "$(COLOR_START)>> Compiling Assembler programs...$(COLOR_END)"
 	
 	mkdir -p binaries/
 	
 	$(foreach name, $(wildcard source/programs/*.asm),  nasm $(NASMARGS) -I source/programs/ $(name) -o binaries/$(shell basename $(name) .asm).rex;)
 	
 	@echo "$(COLOR_START)>> Compiled!$(COLOR_END)"
+
+compileprogramsc:
+	@echo "$(COLOR_START)>> Compiling C programs...$(COLOR_END)"
 	
+	@if [ "Darwin" == "Darwin" ]; then \
+		echo "$(COLOR_START_RED)>> Sadly, compiling C-Programs on OS X doesn't work yet...$(COLOR_END)";\
+	else\
+		mkdir -p binaries/ \
+		$(foreach name, $(wildcard source/programs/*.c),gcc $(GCCARGS) $(name) -o binaries/$(shell basename $(name) .c).o;)\
+		$(foreach name, $(wildcard binaries/*.o), objcopy $(OBJCOPYARGS) $(name);)\
+		$(foreach name, $(wildcard binaries/*.o), ld $(LDARGS) $(name) -o binaries/$(shell basename $(name) .o).rex;)\
+		rm binaries/*.o; \
+		echo "$(COLOR_START)>> Compiled!$(COLOR_END)";\
+	fi
+		
+	 
+	@echo "$(COLOR_START)>> Compiled!$(COLOR_END)"
 	
-compile: clean compilekernel compilebootloader compileprograms
+compile: compilekernel compilebootloader compileprograms
 	
 clean: 
 	@echo "$(COLOR_START)>> Removing dirs...$(COLOR_END)"
@@ -62,12 +85,12 @@ floppy: compile
 		cp disks/rolfOS.dmg disks/rolfOS.flp; \
 		rm disks/rolfOS.dmg; \
 	else \
-		mkdir tmp-loop; \
-		mount -o loop -t vfat disks/rolfOS.flp tmp-loop; \
-		cp binaries/*.bin loop-tmp/; \
+		mkdir -p loop-tmp; \
+		sudo mount -o loop -t vfat disks/rolfOS.flp loop-tmp; \
+		cp binaries/*.* loop-tmp/; \
 		sleep 0.2; \
-		umount tmp-loop; \
-		rm -rf tmp-loop; \
+		sudo umount loop-tmp; \
+		rm -rf loop-tmp; \
 	fi
 	@echo "$(COLOR_START)>> Done!"
 
