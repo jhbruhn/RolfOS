@@ -113,4 +113,14 @@ runiso: iso
 	@echo "$(COLOR_START)>> QEMU exited!$(COLOR_END)"
 	
 docs:
-	echo $(shell cd doc/tools/; ./generateDocs.sh)
+	cd doc
+	doc/tools/asm4doxy.pl -ud $(shell find source/features/ -name '*.asm' | tr -s '\\n')
+
+	cd doc && doxygen Doxyfile
+
+	rm *.c
+gh-pages:
+	git checkout gh-pages
+	git merge master
+	git push origin gh-pages
+	git checkout master

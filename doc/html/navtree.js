@@ -1,20 +1,13 @@
 var NAVTREE =
 [
   [ "RolfOS", "index.html", [
-    [ "RolfOS documentation", "index.html", null ],
-    [ "Files", null, [
-      [ "File List", "files.html", "files" ],
-      [ "File Members", "globals.html", [
-        [ "All", "globals.html", null ],
-        [ "Functions", "globals_func.html", null ]
-      ] ]
-    ] ]
+    [ "RolfOS documentation", "index.html", null ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"cli-asm_8c.html"
+"index.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
