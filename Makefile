@@ -1,17 +1,15 @@
 NASMARGS = -f bin -O0
-GCCARGS = -nostdlib -nostartfiles -nodefaultlibs -mno-red-zone
-OBJCOPYARGS = -O binary --section-alignment 32768
-LDARGS = -T data/app.ld
 COLOR_END = "\\033[0m"
-COLOR_START = "\\033[32m"
-COLOR_START_RED = "\\033[31m"
+COLOR_START = "\\033[31m"
 UNAME := $(shell uname)
 
 all: floppy
 	
 compilebootloader:
 	@echo "$(COLOR_START)>> Compiling bootloader...$(COLOR_END)"
-		
+	
+	mkdir -p binaries/
+	
 	nasm $(NASMARGS) source/bootload.asm -o binaries/bootload.bin
 	
 	@echo "$(COLOR_START)>> Compiled!$(COLOR_END)"
@@ -25,30 +23,17 @@ compilekernel:
 	
 	@echo "$(COLOR_START)>> Compiled!$(COLOR_END)"
 	
-compileprograms: compileprogramsasm compileprogramsc
+compileprograms:
+	@echo "$(COLOR_START)>> Compiling programs...$(COLOR_END)"
 	
+	mkdir -p binaries/
 	
-compileprogramsasm:
-	@echo "$(COLOR_START)>> Compiling Assembler programs...$(COLOR_END)"
-		
 	$(foreach name, $(wildcard source/programs/*.asm),  nasm $(NASMARGS) -I source/programs/ $(name) -o binaries/$(shell basename $(name) .asm).rex;)
 	
 	@echo "$(COLOR_START)>> Compiled!$(COLOR_END)"
-
-compileprogramsc:
-	@echo "$(COLOR_START)>> Compiling C programs...$(COLOR_END)"
 	
-	@if [ $(UNAME) = "Darwin" ]; then \
-		echo "$(COLOR_START_RED)>> Sadly, compiling C-Programs for RolfOS on OS X doesn't work yet...$(COLOR_END)";\
-	else\
-		$(foreach name, $(wildcard source/programs/*.c), $(CC) $(GCCARGS) $(name) -o binaries/$(shell basename $(name) .c).o;)\
-		$(foreach name, $(wildcard binaries/*.o), objcopy $(OBJCOPYARGS) $(name);)\
-		$(foreach name, $(wildcard binaries/*.o), ld $(LDARGS) $(name) -o binaries/$(shell basename $(name) .o).rex;)\
-		rm binaries/*.o; \
-		echo "$(COLOR_START)>> Compiled!$(COLOR_END)";\
-	fi
-			
-compile: compilekernel compilebootloader compileprograms
+	
+compile: clean compilekernel compilebootloader compileprograms
 	
 clean: 
 	@echo "$(COLOR_START)>> Removing dirs...$(COLOR_END)"
@@ -63,7 +48,7 @@ floppy: compile
 	@echo "$(COLOR_START)>> Done!$(COLOR_END)"
 	
 	@echo "$(COLOR_START)>> Copying files to floppy...$(COLOR_END)"
-	@if [ "$(UNAME)" = "Darwin" ]; then \
+	@if [ "$(UNAME)" == "Darwin" ]; then \
 		cp disks/rolfOS.flp disks/rolfOS.dmg; \
 		export MOUNTED_FILE=$$(hdid -nobrowse -nomount disks/rolfOS.dmg); \
 		mkdir loop-tmp; \
@@ -77,12 +62,12 @@ floppy: compile
 		cp disks/rolfOS.dmg disks/rolfOS.flp; \
 		rm disks/rolfOS.dmg; \
 	else \
-		mkdir -p loop-tmp; \
-		sudo mount -o loop -t vfat disks/rolfOS.flp loop-tmp; \
-		cp binaries/*.* loop-tmp/; \
+		mkdir tmp-loop; \
+		mount -o loop -t vfat disks/rolfOS.flp tmp-loop; \
+		cp binaries/*.bin loop-tmp/; \
 		sleep 0.2; \
-		sudo umount loop-tmp; \
-		rm -rf loop-tmp; \
+		umount tmp-loop; \
+		rm -rf tmp-loop; \
 	fi
 	@echo "$(COLOR_START)>> Done!"
 
